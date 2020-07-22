@@ -1,13 +1,3 @@
-// render start page with view highScores in top left, timer at 0 in top right, coding quiz challenge header, explaination text underneath, and a stat quiz button under that
-
-//once start button is pressed change header to question and text under to buttons with answers in them, also set timer to 75 seconds
-
-//if a button is clicked check to see if it matches the correct answer and display if right or wrong, if wrong reduce time, if right add points, then go to next question
-
-//after all questions answered or if timer reaches 0 replace header with all done! show currentScore, allow user to input initials, and submit them to local storage, take user to high currentScore page
-
-//if clicked view highScore or after submit initials replace header with highScores, show high currentScore saved to loval storage if there is one, show buttons for home page and clear high currentScore from local storage
-
 var body = document.body;
 
 var viewHighScore = document.createElement("span");
@@ -21,12 +11,12 @@ var timeInterval
 var currentScore = "";
 
 var initialsText = document.createElement("span");
-initialsText.style.textAlign = "center"//not working
+initialsText.style.marginLeft = "40%"//only way to move this
 var userInitials = document.createElement("input")
 var submitButton = document.createElement("button");
 
 var highScoreSpan = document.createElement("span")
-highScoreSpan.style.textAlign = "center"//not working
+highScoreSpan.style.marginLeft = "44%"//only way to move this
 var goBackButton = document.createElement("button")
 var clearHighScoreButton = document.createElement("button")
 
@@ -35,10 +25,11 @@ h1Text.style.textAlign = "center"
 var underText = document.createElement("div");
 underText.style.textAlign = "center"
 var startButton = document.createElement("button");
-startButton.style.alignSelf = "center"//not working
+startButton.style.width = "200px"
+startButton.style.marginLeft = "45%"//only way to move this
 var listEl = document.createElement("ol");
 listEl.style.listStyleType = "none"
-listEl.style.textAlign = "center"
+listEl.style.marginLeft = "45%"//only way to move this
 var currentQuestion = 0;
 
 var questionObjects = [
@@ -127,7 +118,6 @@ function SubmitHighscorePage() {
                 localStorage.setItem("currentScore", currentScore);
             }
 
-            console.log(userInitials.value)//store highScores in local storage
             viewHighscorePage()
 
         })
@@ -139,6 +129,9 @@ function SubmitHighscorePage() {
 }
 
 function viewHighscorePage() {
+    clearInterval(timeInterval);
+    timer.textContent = 0
+    document.querySelector("ol").innerHTML = "";
     startButton.style.display = "none"
     viewHighScore.style.display = "none"
     timer.style.display = "none"
@@ -146,7 +139,7 @@ function viewHighscorePage() {
     underText.style.display = ""
     underText.textContent = ""
     if (localStorage.getItem("userInitials")) {
-        underText.textContent = localStorage.getItem("userInitials") + " " + localStorage.getItem("currentScore")//highScores in local storage
+        underText.textContent = localStorage.getItem("userInitials") + " " + localStorage.getItem("currentScore")
     }
 
 
@@ -171,7 +164,6 @@ function viewHighscorePage() {
     document.querySelector("#clearHighScore").addEventListener("click", function (event) {
         if (event.target.matches("button")) {
             underText.textContent = ""
-            //clear highScores from local storage
             localStorage.setItem("userInitials", "");
             localStorage.setItem("currentScore", "");
         }
@@ -189,7 +181,6 @@ document.querySelector("ol").addEventListener("click", function (event) {
         if (currentQuestion > questionObjects[currentQuestion].answers.length - 1) {
             clearInterval(timeInterval);
 
-            console.log(currentScore)
             timeLeft = 0
             timer.textContent = timeLeft
             SubmitHighscorePage()
@@ -200,7 +191,6 @@ document.querySelector("ol").addEventListener("click", function (event) {
                 timeLeft -= 10
             }
             currentScore = timeLeft
-            console.log(currentScore)
             currentQuestion++
             whichQuestion()
         }
