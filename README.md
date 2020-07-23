@@ -1,1 +1,1 @@
-# Homework4
+University of Miami Full Stack Course Homework number 4. This homework is about making a quiz using javascript, to take the quiz hit the start button. It is timed and getting an answer wrong will penalize you 10 seconds, try to get a high score!
