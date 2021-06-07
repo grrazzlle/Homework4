@@ -40,8 +40,8 @@ var questionObjects = [
     { question: 'A very useful tool used during development and debugging for printing content to the debugger is:', answers: ['1. JavaScript', '2. terminal / bash', '3. for loops', '4. console.log'], correctAnswer: '2. terminal / bash' }
 ];
 
-localStorage.setItem('userInitials', '');
-localStorage.setItem('currentScore', '');
+// localStorage.setItem('userInitials', '');
+// localStorage.setItem('currentScore', '');
 
 body.appendChild(viewHighScore)
 viewHighScore.appendChild(viewHighScoreLink)
